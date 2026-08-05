@@ -16,6 +16,7 @@ REQUIRED = (
     "VERSION",
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
+    "scripts/update_skill.py",
 )
 
 SKILL_NAME = "comfyui-prompt-coach"
@@ -46,7 +47,10 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--version")
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
-    parser.add_argument("--release-notes", default="新增 GitHub 一句话检查更新能力。")
+    parser.add_argument(
+        "--release-notes",
+        default="每次使用后检查更新；支持“更新skill”从 GitHub 直接校验安装；同步 74 个课程工作流。",
+    )
     args = parser.parse_args()
 
     skill_dir = args.skill_dir.resolve()

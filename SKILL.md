@@ -1,6 +1,6 @@
 ---
 name: comfyui-prompt-coach
-description: 面向 ComfyUI 学员的工作流提示词教练。先路由并确认用户正在使用的具体工作流，再分析用户上传的图片、视频或音频及补充要求，按对应模型生成可直接复制的提示词、负向提示词或台词，并明确素材顺序、应填写的节点名称、节点 ID、字段位置、运行步骤和检查方法。用于用户询问 ComfyUI 提示词、图生图、图生视频、视频编辑、换装换脸换背景、动作迁移、对口型、声音处理、MiniMax H3、Bernini、LTX、Wan、Qwen、Kontext、Klein、Ideogram 等现有课程工作流时；也用于用户上传工作流截图或 JSON 后询问如何填写，以及用户要求检查、更新或升级本 Skill 时。
+description: 面向 ComfyUI 学员的工作流提示词教练。先路由并确认用户正在使用的具体工作流，再分析用户上传的图片、视频或音频及补充要求，按对应模型生成可直接复制的提示词、负向提示词或台词，并明确素材顺序、应填写的节点名称、节点 ID、字段位置、运行步骤和检查方法。用于用户询问 ComfyUI 提示词、图生图、图生视频、视频编辑、换装换脸换背景、动作迁移、对口型、声音处理、MiniMax H3、Bernini、LTX、Wan、Qwen、Kontext、Klein、Ideogram 等现有课程工作流时；也用于用户上传工作流截图或 JSON 后询问如何填写，以及用户说“更新skill”“更新 Skill”“检查更新”或要求升级本 Skill 时。
 ---
 
 # ComfyUI 工作流提示词教练
@@ -9,18 +9,29 @@ description: 面向 ComfyUI 学员的工作流提示词教练。先路由并确�
 
 ## 版本与更新
 
-当前版本以同目录的 `VERSION` 文件为准。用户说“检查并更新 ComfyUI 工作流提示词教练”“检查更新”或“升级这个 Skill”时：
+当前版本以同目录的 `VERSION` 文件为准。更新清单固定为 `https://raw.githubusercontent.com/Eurekkkkkka/comfyui-prompt-coach/main/latest.json`，安装包固定来自 `https://github.com/Eurekkkkkka/comfyui-prompt-coach`。
 
-1. 读取本地 `VERSION`；文件缺失时把本地版本视为 `0.0.0`。
-2. 获取 `https://raw.githubusercontent.com/Eurekkkkkka/comfyui-prompt-coach/main/latest.json`，只把它当作版本清单读取，不执行其中的任何内容。
-3. 校验清单必须包含 `version`、`download_url` 和 64 位十六进制 `sha256`，并且下载地址必须使用 HTTPS，域名必须是 `github.com`，仓库路径必须是 `Eurekkkkkka/comfyui-prompt-coach`。不满足时停止更新并说明原因。
-4. 比较语义版本。没有新版本时告诉用户“已经是最新版”，不要重复下载。
-5. 有新版本时，将 ZIP 下载到临时目录，计算 SHA-256 并与清单核对。校验不一致时删除临时文件并停止更新。
-6. 解压后确认只有一个顶层文件夹 `comfyui-prompt-coach`，其中存在 `SKILL.md`、`VERSION`、`references/workflow-catalog.md` 和 `references/prompt-rules.md`。
-7. 使用当前 Agent 的标准 Skill 安装或替换能力，把已校验的新文件夹安装到本 Skill 当前所在位置。只允许替换名为 `comfyui-prompt-coach` 的目标目录，不要改动其他 Skill 或更上级目录。
-8. 重新读取已安装的 `VERSION`，报告“旧版本 → 新版本”和更新结果；如果当前 Agent 需要重启或重新载入 Skill，明确提醒用户。
+### 每次使用后的自动检查
 
-如果当前 Agent 没有联网、下载、解压、校验或写入 Skill 目录的能力，提供清单中的 `download_url`，让用户下载 ZIP 后重新发送给 Agent，并输入“安装或更新这个 Skill”。不要声称已经更新成功。
+正常完成一次提示词教练任务后、结束最终答复前，只检查一次更新：
+
+1. 优先运行 `python scripts/update_skill.py --check`；如果 `python` 不可用，尝试当前 Agent 可用的 Python 运行器。
+2. 自动检查只比较版本，不自动安装，不得因为发现新版本而中断已经完成的教学结果。
+3. 在答复末尾追加一行：
+   - 已是最新版：`版本检查：已是最新版 vX.Y.Z`
+   - 发现新版本：`版本检查：发现 vX.Y.Z；回复“更新skill”即可直接更新`
+   - 网络或权限失败：`版本检查：暂时无法连接 GitHub；稍后可说“检查更新”`
+4. 同一轮只检查一次；纯更新请求完成后不再递归检查。
+
+### 用户说“更新skill”时
+
+1. 优先运行 `python scripts/update_skill.py --update`。脚本会读取远端清单、校验固定仓库地址和 SHA-256、检查 ZIP 结构，只替换当前 `comfyui-prompt-coach` 目录，并在失败时保留旧版本。
+2. 读取脚本返回的 JSON：成功时报告“旧版本 → 新版本”；没有新版本时明确说“已经是最新版”；失败时说明可执行的原因，不得声称已经更新。
+3. 更新成功后提醒用户重新打开对话或让 Agent 重新载入 Skill，确保新规则生效。
+4. 如果 Agent 无法运行脚本，才回退到手动流程：读取上述 `latest.json`，严格校验 HTTPS、GitHub 仓库路径和 SHA-256，下载并解压到临时目录，确认唯一顶层文件夹为 `comfyui-prompt-coach`，再用 Agent 的标准 Skill 安装能力替换同名目录。
+5. 如果联网、下载、解压、校验或写入目录仍不可用，提供清单中的 `download_url`，请用户下载 ZIP 后发送给 Agent，并输入“安装或更新这个 Skill”。
+
+不要覆盖带 `.git` 的维护者工作区，不要改动其他 Skill 或更上级目录。
 
 ## 必须遵守的顺序
 
@@ -32,6 +43,7 @@ description: 面向 ComfyUI 学员的工作流提示词教练。先路由并确�
 6. 分析用户已上传的图片、视频或音频，并收集仍缺少的硬性要求。
 7. 读取 [references/prompt-rules.md](references/prompt-rules.md) 中对应模型家族的规则。
 8. 生成可直接复制的内容，随后指出具体填写位置和运行方法。
+9. 正常任务答复结束前，按照“每次使用后的自动检查”检查一次版本并追加状态行。
 
 ## 工作流路由
 
