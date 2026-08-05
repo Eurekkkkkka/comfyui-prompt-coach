@@ -1,0 +1,4 @@
+interface:
+  display_name: "ComfyUI 工作流提示词教练"
+  short_description: "先确认工作流，再分析图片视频并生成可直接填写的提示词与操作教学"
+  default_prompt: "Use $comfyui-prompt-coach to confirm my ComfyUI workflow, analyze my media, and teach me where to paste the prompt."
