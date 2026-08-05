@@ -1,6 +1,6 @@
 # 工作流目录与节点定位
 
-> 数据快照：2026-08-05（慎银的镜像，73 个工作流）。本目录由工作流 JSON 自动提取后供人工复核；如用户上传的 JSON 与本目录冲突，以用户实际 JSON 为准。
+> 数据快照：2026-08-05（慎银的镜像，74 个工作流）。本目录由工作流 JSON 自动提取后供人工复核；如用户上传的 JSON 与本目录冲突，以用户实际 JSON 为准。
 
 ## 使用方法
 
@@ -12,7 +12,7 @@
 
 ## 分类索引
 
-- [MiniMax H3（3）](#MiniMax-H3)
+- [MiniMax H3（4）](#MiniMax-H3)
 - [光影处理（2）](#光影处理)
 - [动作迁移（4）](#动作迁移)
 - [动漫转真人（4）](#动漫转真人)
@@ -40,6 +40,7 @@
 
 | 分类 | 工作流 | 提示词 | 素材类型 |
 |---|---|---|---|
+| MiniMax H3 | MiniMax-H3-Director | 需填写 | 图片/视频/音频（按模式） |
 | MiniMax H3 | MiniMax-H3-I2V-Image-to-Video | 需填写 | 图片 |
 | MiniMax H3 | MiniMax-H3-R2V-Reference-to-Video | 需填写 | 图片 |
 | MiniMax H3 | MiniMax-H3-T2V-Text-to-Video | 需填写 | 未自动识别 |
@@ -115,6 +116,23 @@
 | 视频换人 | 视频换人-MoCha（自动遮罩） | 需填写 | 图片、视频 |
 
 ## MiniMax H3
+
+### MiniMax-H3-Director
+
+- 文件：`MiniMax H3/MiniMax-H3-Director.json`
+- 提示词状态：需填写
+- 素材类型：图片/视频/音频（按模式）
+- 素材节点：
+  - 图片/视频/音频（按模式）：`MiniMaxH3Director（task_type 模式 / global_prompt 提示词 / 导演台素材区）`，节点 ID `5`，类型 `MiniMaxH3Director`；原内容特征：t2v — 文生视频(Text to Video)
+- 提示词节点候选：
+  - 导演台全局提示词（global_prompt）：`MiniMaxH3Director（task_type 模式 / global_prompt 提示词 / 导演台素材区）`，节点 ID `5`，类型 `MiniMaxH3Director`，mode `0`；原内容特征：Realistic live-action cinematic look: a post-rain dusk metropolis, anamorphic lens, shallow dep…
+- 模式与教学要点：
+  - 先在节点顶部 `task_type` 选择模式，再在 `global_prompt` 填写提示词。
+  - T2V：只填文字；I2V：上传一张首帧图；FL2V：上传首帧和尾帧，只放首帧时也可作 I2V。
+  - R2V：上传图片、视频或音频作为参考，可用 `<Picture 1>`、`<Video 1>`、`<Audio 1>` 引用。
+  - V2V：上传源视频，源视频作为 `<Video 1>`；RV2V：源视频加人物图、参考视频或音频定向修改。
+  - T2V/I2V/FL2V 使用 `minimax_h3_fl2va_pruned_int8_convrot.safetensors`；R2V/V2V/RV2V 使用 `minimax_h3_ref2va_pruned_int8_convrot.safetensors`。
+  - 默认 124 帧约 5 秒（24fps）；切换模式后先检查 UNET，再填写素材、提示词、分辨率、帧数和 seed。
 
 ### MiniMax-H3-I2V-Image-to-Video
 

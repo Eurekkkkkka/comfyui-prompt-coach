@@ -26,6 +26,7 @@ PROMPT_TYPE_PARTS = (
     "painterfluximageedit",
     "qwen3_vqa",
     "ailab_qwenvl",
+    "minimaxh3director",
     "4c314f31-ecda-4b08-ae98-faaba1bf613f",
 )
 PROMPT_TITLE_PARTS = (
@@ -81,6 +82,8 @@ def compact(text: str, limit: int = 96) -> str:
 def select_example(node_type: str, values: list[str]) -> str:
     """Prefer human-editable prose over modes, filenames, JSON, and model selectors."""
     lowered_type = node_type.lower()
+    if lowered_type == "minimaxh3director" and len(values) > 1:
+        return values[1]
     if lowered_type == "comfyberninidirector" and len(values) > 1:
         return values[1]
     if lowered_type == "ltxdirector":
@@ -104,6 +107,8 @@ def select_example(node_type: str, values: list[str]) -> str:
 def prompt_role(node_type: str, title: str, values: list[str]) -> str:
     haystack = " ".join([node_type, title, *values]).lower()
     lowered_type = node_type.lower()
+    if lowered_type == "minimaxh3director":
+        return "导演台全局提示词（global_prompt）"
     if lowered_type == "comfyberninidirector":
         return "导演指令（节点内含正向/负向字段）"
     if lowered_type == "ltxdirector":
@@ -147,6 +152,8 @@ def media_kind(node: dict[str, Any]) -> str | None:
     values = " ".join(flatten_strings(node.get("widgets_values", [])))
     if any(hint in title for hint in MARKETING_HINTS) or any(hint in values for hint in ("二维码", "免费速成课")):
         return None
+    if node_type.lower() == "minimaxh3director":
+        return "图片/视频/音频（按模式）"
     if "comfyberninidirector" in haystack:
         return "视频/参考图"
     if node_type.lower() == "ltxdirector":
@@ -161,6 +168,7 @@ def learner_label(node: dict[str, Any]) -> str:
     if node.get("title"):
         return str(node["title"])
     labels = {
+        "MiniMaxH3Director": "MiniMaxH3Director（task_type 模式 / global_prompt 提示词 / 导演台素材区）",
         "ComfyBerniniDirector": "ComfyBerniniDirector（节点内正向/负向提示词）",
         "LTXDirector": "LTXDirector（导演台内提示词/轨道）",
         "PainterFluxImageEdit": "PainterFluxImageEdit（instruction 字段）",
@@ -178,6 +186,7 @@ def parse_workflow(path: Path, root: Path) -> dict[str, Any]:
     category = parts[0] if len(parts) > 1 else "根目录"
     prompts: list[dict[str, Any]] = []
     media: list[dict[str, Any]] = []
+    teaching_notes: list[str] = []
 
     for node in data.get("nodes", []):
         values = flatten_strings(node.get("widgets_values", []))
@@ -204,6 +213,16 @@ def parse_workflow(path: Path, root: Path) -> dict[str, Any]:
                 }
             )
 
+        if str(node.get("type", "")).lower() == "minimaxh3director":
+            teaching_notes = [
+                "先在节点顶部 `task_type` 选择模式，再在 `global_prompt` 填写提示词。",
+                "T2V：只填文字；I2V：上传一张首帧图；FL2V：上传首帧和尾帧，只放首帧时也可作 I2V。",
+                "R2V：上传图片、视频或音频作为参考，可用 `<Picture 1>`、`<Video 1>`、`<Audio 1>` 引用。",
+                "V2V：上传源视频，源视频作为 `<Video 1>`；RV2V：源视频加人物图、参考视频或音频定向修改。",
+                "T2V/I2V/FL2V 使用 `minimax_h3_fl2va_pruned_int8_convrot.safetensors`；R2V/V2V/RV2V 使用 `minimax_h3_ref2va_pruned_int8_convrot.safetensors`。",
+                "默认 124 帧约 5 秒（24fps）；切换模式后先检查 UNET，再填写素材、提示词、分辨率、帧数和 seed。",
+            ]
+
     prompt_status = "无需提示词" if not prompts else "需填写"
     media_kinds = sorted({item["kind"] for item in media})
     return {
@@ -214,6 +233,7 @@ def parse_workflow(path: Path, root: Path) -> dict[str, Any]:
         "media_kinds": media_kinds,
         "prompts": prompts,
         "media": media,
+        "teaching_notes": teaching_notes,
     }
 
 
@@ -275,6 +295,10 @@ def render_markdown(workflows: list[dict[str, Any]], snapshot: str) -> str:
                     )
             else:
                 lines.append("- 教学处理：不要虚构提示词框；说明素材输入和运行步骤。")
+            if item.get("teaching_notes"):
+                lines.append("- 模式与教学要点：")
+                for note in item["teaching_notes"]:
+                    lines.append(f"  - {note}")
             lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"

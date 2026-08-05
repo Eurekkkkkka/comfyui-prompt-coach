@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "dc8b6d03d211d7f4a63506848e1a1bcb901101169ce79fae5676c956502b82f2",
-  "release_notes": "新增 GitHub 一句话检查更新能力。"
+  "sha256": "397cccfec12de6d8da2a6f47264b6eb622a818dd8dbe25d52f34c75857795458",
+  "release_notes": "每次使用后检查更新；支持“更新skill”从 GitHub 直接校验安装；同步 74 个课程工作流。"
 }
