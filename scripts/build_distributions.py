@@ -49,7 +49,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="每次使用后检查更新；支持“更新skill”从 GitHub 直接校验安装；同步 74 个课程工作流。",
+        default="新增 MiniMax H3 素材分析、参考权限、镜头时间线、对白声音与模式化提示词优化规则。",
     )
     args = parser.parse_args()
 

@@ -1,6 +1,6 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "397cccfec12de6d8da2a6f47264b6eb622a818dd8dbe25d52f34c75857795458",
-  "release_notes": "每次使用后检查更新；支持“更新skill”从 GitHub 直接校验安装；同步 74 个课程工作流。"
+  "sha256": "f04f7b0757c1096e978a06532b0183f55fae57e8f2e797b1115045498b9bb50b",
+  "release_notes": "新增 MiniMax H3 素材分析、参考权限、镜头时间线、对白声音与模式化提示词优化规则。"
 }
