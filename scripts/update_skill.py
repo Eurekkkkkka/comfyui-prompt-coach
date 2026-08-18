@@ -28,6 +28,7 @@ REQUIRED = (
     "VERSION",
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
+    "references/visual-asset-storyboard.md",
     "scripts/update_skill.py",
 )
 MAX_DOWNLOAD_BYTES = 50 * 1024 * 1024
