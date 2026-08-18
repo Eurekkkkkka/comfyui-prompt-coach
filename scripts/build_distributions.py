@@ -16,6 +16,7 @@ REQUIRED = (
     "VERSION",
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
+    "references/visual-asset-storyboard.md",
     "scripts/update_skill.py",
 )
 
