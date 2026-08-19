@@ -1,6 +1,6 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.1",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "0a1c06534e33182f075637257bfecf419024f56ba682ba7502a139a7b820ab34",
-  "release_notes": "新增小说改 AI 漫剧全流程：整书解析、故事圣经、全集分集表、逐集剧本与分镜、连续性检查，以及图片、配音、字幕和剪辑交接文件。"
+  "sha256": "98daf197e55c452612f83cc21b5462853c1c44c410d5112d00d52030e54e1ac8",
+  "release_notes": "小说导入后新增视觉资产三视图提示词交付：人物必须为全身正面、标准侧面和背面三视图，提示词统一使用中文长句，并移除画面比例、4K、8K及空泛质量词。"
 }

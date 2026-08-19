@@ -51,7 +51,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="新增小说改 AI 漫剧全流程：整书解析、故事圣经、全集分集表、逐集剧本与分镜、连续性检查，以及图片、配音、字幕和剪辑交接文件。",
+        default="小说导入后新增视觉资产三视图提示词交付：人物必须为全身正面、标准侧面和背面三视图，提示词统一使用中文长句，并移除画面比例、4K、8K及空泛质量词。",
     )
     args = parser.parse_args()
 
