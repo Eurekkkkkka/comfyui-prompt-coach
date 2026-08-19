@@ -1,6 +1,6 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "a3693cdfc2f8b369a231cc8141bd27b7193915a682c9f0e583f77488dd79b276",
-  "release_notes": "新增视觉资产与连续分镜模式：人物、场景、道具三类资产建档，主视觉基准板，6—10 张一致分镜，单变量失败重跑，以及统一命名与验收。"
+  "sha256": "0a1c06534e33182f075637257bfecf419024f56ba682ba7502a139a7b820ab34",
+  "release_notes": "新增小说改 AI 漫剧全流程：整书解析、故事圣经、全集分集表、逐集剧本与分镜、连续性检查，以及图片、配音、字幕和剪辑交接文件。"
 }
