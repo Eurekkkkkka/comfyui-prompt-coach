@@ -17,6 +17,7 @@ REQUIRED = (
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
     "references/visual-asset-storyboard.md",
+    "references/novel-to-comic-pipeline.md",
     "scripts/update_skill.py",
 )
 
@@ -26,7 +27,7 @@ VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 
 
 def should_include(path: Path) -> bool:
-    excluded_parts = {".git", "__pycache__"}
+    excluded_parts = {".git", "__pycache__", "dist"}
     return (
         not excluded_parts.intersection(path.parts)
         and path.name not in {".gitignore", "latest.json"}
@@ -50,7 +51,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="新增 MiniMax H3 素材分析、参考权限、镜头时间线、对白声音与模式化提示词优化规则。",
+        default="小说导入后新增视觉资产三视图提示词交付：人物必须为全身正面、标准侧面和背面三视图，提示词统一使用中文长句，并移除画面比例、4K、8K及空泛质量词。",
     )
     args = parser.parse_args()
 

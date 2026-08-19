@@ -1,6 +1,6 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.1",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "a3693cdfc2f8b369a231cc8141bd27b7193915a682c9f0e583f77488dd79b276",
-  "release_notes": "新增视觉资产与连续分镜模式：人物、场景、道具三类资产建档，主视觉基准板，6—10 张一致分镜，单变量失败重跑，以及统一命名与验收。"
+  "sha256": "98daf197e55c452612f83cc21b5462853c1c44c410d5112d00d52030e54e1ac8",
+  "release_notes": "小说导入后新增视觉资产三视图提示词交付：人物必须为全身正面、标准侧面和背面三视图，提示词统一使用中文长句，并移除画面比例、4K、8K及空泛质量词。"
 }
