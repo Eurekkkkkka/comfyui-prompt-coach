@@ -17,6 +17,7 @@ REQUIRED = (
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
     "references/visual-asset-storyboard.md",
+    "references/novel-to-comic-pipeline.md",
     "scripts/update_skill.py",
 )
 
@@ -26,7 +27,7 @@ VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 
 
 def should_include(path: Path) -> bool:
-    excluded_parts = {".git", "__pycache__"}
+    excluded_parts = {".git", "__pycache__", "dist"}
     return (
         not excluded_parts.intersection(path.parts)
         and path.name not in {".gitignore", "latest.json"}
@@ -50,7 +51,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="新增 MiniMax H3 素材分析、参考权限、镜头时间线、对白声音与模式化提示词优化规则。",
+        default="新增小说改 AI 漫剧全流程：整书解析、故事圣经、全集分集表、逐集剧本与分镜、连续性检查，以及图片、配音、字幕和剪辑交接文件。",
     )
     args = parser.parse_args()
 

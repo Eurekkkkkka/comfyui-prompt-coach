@@ -1,4 +1,4 @@
 interface:
-  display_name: "ComfyUI 工作流提示词教练"
-  short_description: "先确认工作流，再分析图片视频并生成可直接填写的提示词与操作教学"
-  default_prompt: "Use $comfyui-prompt-coach to confirm my ComfyUI workflow, analyze my media, and teach me where to paste the prompt."
+  display_name: "AI 漫剧与 ComfyUI 提示词教练"
+  short_description: "小说改AI漫剧全流程与ComfyUI提示词、一致性分镜教学"
+  default_prompt: "Use $comfyui-prompt-coach to turn my novel into an AI comic-drama production package or guide my ComfyUI workflow prompts."
