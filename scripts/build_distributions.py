@@ -53,7 +53,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="新增零基础教学模式：用户说“教我怎么用这个skill”时，按小说到视频、具体工作流教学、结果诊断三个入口逐步引导；保留逐段文字到视频闭环和中文交付文件名。",
+        default="修正视觉资产输出规范：只有人物生成完整全身三视图，道具每项生成一张单物体参考图，场景每项生成一张单一连续空间参考图，并禁止道具与场景分栏、拼贴、三视图或重复主体。",
     )
     args = parser.parse_args()
 

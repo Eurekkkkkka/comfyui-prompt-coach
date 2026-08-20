@@ -1,6 +1,6 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.4",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "ed4533197f1ca6133bc8c951a4c2f79edb2e2a479d20ecbd8cab056f8ce6b8d1",
-  "release_notes": "新增零基础教学模式：用户说“教我怎么用这个skill”时，按小说到视频、具体工作流教学、结果诊断三个入口逐步引导；保留逐段文字到视频闭环和中文交付文件名。"
+  "sha256": "91d2a1357bd3fe87f3e756ec157cae87ba08fd8745ebc910ac9a852e7e6ffe2d",
+  "release_notes": "修正视觉资产输出规范：只有人物生成完整全身三视图，道具每项生成一张单物体参考图，场景每项生成一张单一连续空间参考图，并禁止道具与场景分栏、拼贴、三视图或重复主体。"
 }
