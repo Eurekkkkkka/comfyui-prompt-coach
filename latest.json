@@ -1,6 +1,6 @@
 {
-  "version": "1.5.1",
+  "version": "1.5.2",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "98daf197e55c452612f83cc21b5462853c1c44c410d5112d00d52030e54e1ac8",
-  "release_notes": "小说导入后新增视觉资产三视图提示词交付：人物必须为全身正面、标准侧面和背面三视图，提示词统一使用中文长句，并移除画面比例、4K、8K及空泛质量词。"
+  "sha256": "ed4533197f1ca6133bc8c951a4c2f79edb2e2a479d20ecbd8cab056f8ce6b8d1",
+  "release_notes": "新增零基础教学模式：用户说“教我怎么用这个skill”时，按小说到视频、具体工作流教学、结果诊断三个入口逐步引导；保留逐段文字到视频闭环和中文交付文件名。"
 }

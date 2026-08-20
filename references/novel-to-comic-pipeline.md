@@ -1,6 +1,6 @@
 # 小说改 AI 漫剧模式
 
-当用户上传小说全本，或要求把小说转换为整书解析、故事圣经、全集分集表、逐集剧本、逐集分镜、连续性检查、图片、配音、字幕或剪辑工程时读取本文件。这个模式负责长期项目状态和阶段交付；普通单次 ComfyUI 提示词任务不加载本文件。
+当用户上传小说全本，或要求把小说转换为整书解析、故事圣经、全集分集表、逐集剧本、逐集分镜、连续性检查、图片、配音、字幕或剪辑工程时读取本文件。这个模式负责长期项目状态和阶段交付；普通单次 ComfyUI 提示词任务不加载本文件。用户要求每次输入一段内容并完成资产、首帧、视频和验收后再输入下一段时，同时完整读取 `segment-to-video-loop.md`。
 
 ## 核心原则
 
@@ -10,6 +10,7 @@
 - 每条重要人物事实、事件、伏笔和改编决定尽量保留原著章节或段落编号，无法定位时标为待核实。
 - “已生成文件”“已生成图片”“已完成配音”“已建立剪辑工程”都必须有实际产物。只有方案、提示词或清单时，准确称为交接文件。
 - 默认先做一集完整样片闭环，经用户确认后再批量生产，避免错误扩散到全集。
+- 支持“整书规划”和“逐段文字到视频闭环”两种生产策略。逐段模式仍须保存来源、资产和连续性状态，不得把局部内容冒充全书结论。
 
 ## 启动与默认设置
 
@@ -35,58 +36,70 @@
 作品名-ai漫剧/
 ├─ project-config.yaml
 ├─ project-status.json
+├─ asset-registry.json
+├─ voice-bible.json
 ├─ NEXT_STEP.md
 ├─ deliverables-manifest.json
-├─ 00_source/
+├─ 00-原著/
 │  ├─ original.*
-│  ├─ normalized-novel.md
+│  ├─ 标准化原文.md
 │  └─ source-index.jsonl
-├─ 01_analysis/
-│  ├─ whole-book-analysis.md
-│  ├─ story-bible.md
+├─ 01-整书分析/
+│  ├─ 整书解析.md
+│  ├─ 故事圣经.md
 │  ├─ characters.json
 │  ├─ locations.json
 │  ├─ props.json
 │  ├─ relationships.json
 │  ├─ timeline.json
 │  └─ clue-ledger.json
-├─ 02_episode-plan/
-│  ├─ episode-plan.csv
+├─ 02-全集分集/
+│  ├─ 全集分集表.csv
 │  ├─ episode-plan.json
-│  └─ coverage-audit.md
-├─ 03_episodes/
-│  └─ EP001/
-│     ├─ script.md
+│  └─ 原著覆盖检查.md
+├─ 03-逐集制作/
+│  └─ 第01集/
+│     ├─ 第01集-剧本.md
 │     ├─ script.json
-│     ├─ storyboard.csv
+│     ├─ 第01集-分镜表.csv
 │     ├─ storyboard.json
-│     ├─ continuity-report.md
+│     ├─ 第01集-连续性报告.md
 │     ├─ state-after-episode.json
-│     └─ production/
-│        ├─ image-prompts.csv
-│        ├─ voice-lines.csv
-│        ├─ subtitles.srt
-│        ├─ edit-decision-list.csv
+│     └─ 制作交接/
+│        ├─ 第01集-图片提示词.csv
+│        ├─ 第01集-配音台词表.csv
+│        ├─ 第01集-中文字幕.srt
+│        ├─ 第01集-剪辑决策表.csv
 │        └─ timeline-manifest.json
-├─ 04_visual-assets/
-│  ├─ visual-asset-three-view-prompts.md
-│  ├─ visual-asset-three-view-prompts.csv
-│  ├─ characters/
-│  ├─ locations/
-│  ├─ props/
-│  ├─ reference-board/
-│  └─ shot-images/
-├─ 05_audio/
-├─ 06_subtitles/
-├─ 07_edit-project/
-└─ 08_reports/
+├─ 04-视觉资产/
+│  ├─ 全书-人物资产提示词.md
+│  ├─ 全书-人物资产提示词.csv
+│  ├─ 全书-场景资产提示词.md
+│  ├─ 全书-场景资产提示词.csv
+│  ├─ 全书-道具资产提示词.md
+│  ├─ 全书-道具资产提示词.csv
+│  ├─ 人物/
+│  ├─ 场景/
+│  ├─ 道具/
+│  ├─ 主视觉基准板/
+│  └─ 镜头图片/
+├─ 05-音频/
+├─ 06-字幕/
+├─ 07-剪辑工程/
+└─ 08-报告/
    ├─ continuity-issues.json
-   └─ final-qc.md
+   └─ 最终验收报告.md
 ```
 
 不要创建空文件冒充交付。阶段尚未开始时只创建需要的目录；完成一项后才把它写入 `deliverables-manifest.json`。
 
 `project-status.json` 至少记录：当前阶段、已完成阶段、最后完成的集数、已批准文件、待用户决定事项、已声明假设、连续性未决问题和下一步动作。用户说“继续”时，先读取这个文件、当前集状态和相关事实库，不要从头猜测。
+
+用户可见的 Markdown、CSV、字幕、图片、音频、视频和验收报告默认使用中文文件名；系统续作文件保持稳定英文名。文件内容和关联关系继续使用稳定 ID，不依赖文件名猜测。逐段模式的目录、状态机和中文命名遵守 `segment-to-video-loop.md`。
+
+## 逐段文字到视频入口
+
+用户按章节或片段逐次提交内容时，不要求等待全书上传完毕。先读取已有项目状态，对本段做来源索引、故事线、连续性和资产缺口分析；第一批用户交付是本段故事线与新增/变更的人物、场景、道具提示词。资产回传并通过验收后才生成分镜和首帧提示词；首帧回传并通过第二次故事线与视觉连续性验收后才生成视频提示词；视频回传后完成镜头内外、人物、场景、道具、声音和对白验收。详细步骤以 `segment-to-video-loop.md` 为准。
 
 ## 阶段 0：原著入库与索引
 
@@ -100,11 +113,11 @@
 
 ## 阶段 1：整书解析与故事圣经
 
-先生成 `whole-book-analysis.md`，包括：一句话故事、类型与受众、主题、世界观、主线与支线、人物弧、冲突升级、情绪曲线、爽点或泪点、结局、影视化优势、改编难点和风险。
+先生成 `整书解析.md`，包括：一句话故事、类型与受众、主题、世界观、主线与支线、人物弧、冲突升级、情绪曲线、爽点或泪点、结局、影视化优势、改编难点和风险。
 
 再生成可长期复用的事实库：
 
-- `story-bible.md`：世界规则、时代、地点体系、叙事口吻、核心主题、主线、不可破坏的因果、允许改编项和已批准改编决定。
+- `故事圣经.md`：世界规则、时代、地点体系、叙事口吻、核心主题、主线、不可破坏的因果、允许改编项和已批准改编决定。
 - `characters.json`：角色 ID、姓名与别名、年龄阶段、身份、外貌锚点、服装变化、性格、目标、能力、关系、人物弧、首次/末次出现和 `source_refs`。
 - `locations.json`：地点 ID、空间结构、时代、地标、光线、关联事件和 `source_refs`。
 - `props.json`：道具 ID、外形、材质、尺寸、归属、能力、出现/转移/损坏记录和 `source_refs`。
@@ -116,7 +129,7 @@
 
 质量门：主要角色、结局、跨卷时间线和关键伏笔均已覆盖；每个关键事实可追溯到原著或用户批准的改编决定。
 
-故事圣经通过后、全集图片生产开始前，读取 `visual-asset-storyboard.md`，并从 `characters.json`、`locations.json` 和 `props.json` 导出 `04_visual-assets/visual-asset-three-view-prompts.md` 与 `visual-asset-three-view-prompts.csv`。至少覆盖主要人物、具有剧情识别作用的场景和关键道具；每条记录保留 `asset_id`、资产类型、名称、服装或状态版本、`source_refs`、中文三视图提示词和验收状态。
+故事圣经通过后、全集图片生产开始前，读取 `visual-asset-storyboard.md`，并从 `characters.json`、`locations.json` 和 `props.json` 分别导出 `全书-人物资产提示词.md/csv`、`全书-场景资产提示词.md/csv` 和 `全书-道具资产提示词.md/csv`。至少覆盖主要人物、具有剧情识别作用的场景和关键道具；每条记录保留 `asset_id`、资产类型、名称、服装或状态版本、`source_refs`、中文三视图提示词和验收状态。逐段模式使用 `第NN段-人物资产提示词.csv` 等中文文件名，并只交付新增或变化的资产。
 
 人物资产的每个服装或年龄阶段分别生成一条提示词，必须要求同一角色以全身正面、标准侧面和背面三种视角等高并列，从发顶到脚底完整可见，不得用半身像、头像、转面特写或被衣摆和构图裁切的画面代替。场景使用三个固定观察方向，道具使用正面、侧面和背面；详细格式和验收规则以 `visual-asset-storyboard.md` 为准。
 
@@ -128,7 +141,7 @@
 
 不要机械执行“一章一集”。根据目标时长和戏剧密度重组为“开场钩子—冲突升级—转折或高潮—结尾卡点”，同时保留原著因果和伏笔顺序。
 
-同时导出 `episode-plan.csv` 与 `episode-plan.json`。每集至少包含：
+同时导出用户可见的 `全集分集表.csv` 与系统续作用的 `episode-plan.json`。每集至少包含：
 
 ```text
 episode_id｜title｜source_range｜target_duration｜opening_hook｜episode_goal
@@ -136,7 +149,7 @@ core_conflict｜mid_turn｜climax｜ending_hook｜character_state_change
 clues_planted｜clues_paid_off｜must_keep｜adaptation_changes｜production_notes
 ```
 
-生成 `coverage-audit.md`，检查：
+生成 `原著覆盖检查.md`，检查：
 
 - 主线和必要支线是否都有归属集。
 - 关键角色的出场、退场和成长转折是否完整。
@@ -151,7 +164,7 @@ clues_planted｜clues_paid_off｜must_keep｜adaptation_changes｜production_not
 
 每次生成某一集前读取四类内容：故事圣经与事实库、该集分集条目、对应原著片段、上一集结束状态与未决连续性问题。第一集没有上一集状态时使用项目初始状态。
 
-`script.md` 面向人阅读，`script.json` 面向后续自动化。剧本至少包含：
+`第NN集-剧本.md` 面向人阅读，`script.json` 面向后续自动化。剧本至少包含：
 
 - 集号、标题、目标时长、原著范围和本集改编说明。
 - 3—8 秒开场钩子、场景顺序、冲突升级、高潮和结尾卡点。
@@ -165,7 +178,7 @@ clues_planted｜clues_paid_off｜must_keep｜adaptation_changes｜production_not
 
 ## 阶段 4：逐集分镜
 
-只根据已批准剧本生成分镜。导出 `storyboard.csv` 和 `storyboard.json`，每个镜头至少包含：
+只根据已批准剧本生成分镜。导出用户可见的 `第NN集-分镜表.csv` 和系统续作用的 `storyboard.json`，每个镜头至少包含：
 
 ```text
 shot_id｜scene_id｜start_time｜duration｜narrative_purpose｜shot_size
@@ -180,7 +193,7 @@ start_state｜end_state｜image_prompt｜video_prompt｜negative_prompt
 
 ## 阶段 5：连续性检查
 
-连续性检查分三层：本集内部、相邻集衔接、全书事实与伏笔。生成 `continuity-report.md`，按“阻断、重要、建议”标记问题，并给出证据文件和来源编号；不要只写笼统的“可能不一致”。
+连续性检查分三层：本集内部、相邻集衔接、全书事实与伏笔。生成 `第NN集-连续性报告.md`，按“阻断、重要、建议”标记问题，并给出证据文件和来源编号；不要只写笼统的“可能不一致”。
 
 至少检查：
 
@@ -197,11 +210,11 @@ start_state｜end_state｜image_prompt｜video_prompt｜negative_prompt
 
 ### 图片与视频
 
-从已批准分镜和已验收的三视图资产提示词生成 `image-prompts.csv`，记录镜头 ID、工作流、节点、资产引用、正/负向提示词、种子或版本和输出文件名。只有真实运行工作流并检查结果后，才把图片登记为已生成。失败重跑遵守单变量原则，并保留失败版本。
+从已批准分镜和已验收的三视图资产提示词生成 `第NN集-图片提示词.csv`，记录镜头 ID、工作流、节点、资产引用、正/负向提示词、种子或版本和输出文件名。只有真实运行工作流并检查结果后，才把图片登记为已生成。失败重跑遵守单变量原则，并保留失败版本。
 
 ### 配音
 
-先建立角色声音表，记录说话人、年龄感、音色、语速、情绪范围、发音表和禁用风格。`voice-lines.csv` 至少包含集号、场次、镜头、说话人、台词、情绪、预计时长、音频文件名和状态。存在可用 TTS 工具且用户允许执行时生成实际音频；否则只导出配音清单与工具填写说明。
+先建立角色声音表，记录说话人、年龄感、音色、语速、情绪范围、发音表和禁用风格。`第NN集-配音台词表.csv` 至少包含集号、场次、镜头、说话人、台词、情绪、预计时长、音频文件名和状态。存在可用 TTS 工具且用户允许执行时生成实际音频；否则只导出配音清单与工具填写说明。
 
 ### 字幕
 
@@ -209,19 +222,19 @@ start_state｜end_state｜image_prompt｜video_prompt｜negative_prompt
 
 ### 剪辑工程
 
-先生成 `edit-decision-list.csv` 和 `timeline-manifest.json`，记录轨道、素材文件、入点、出点、转场、字幕、音效、音乐和镜头 ID。只有存在对应剪辑工具、格式支持且实际创建成功时，才交付可打开的剪辑工程；否则提供可导入素材目录、时间线清单和明确的导入步骤，不要伪造 `.prproj`、`.drp` 或其他工程文件。
+先生成用户可见的 `第NN集-剪辑决策表.csv` 和系统续作用的 `timeline-manifest.json`，记录轨道、素材文件、入点、出点、转场、字幕、音效、音乐和镜头 ID。只有存在对应剪辑工具、格式支持且实际创建成功时，才交付可打开的剪辑工程；否则提供可导入素材目录、时间线清单和明确的导入步骤，不要伪造 `.prproj`、`.drp` 或其他工程文件。
 
-所有媒体文件使用稳定命名，例如：
+所有用户可见媒体文件使用中文名，内部仍保留稳定镜头和人物 ID，例如：
 
 ```text
-EP001_S003_SH005_image_v02.png
-EP001_S003_SH005_voice_LINFAN_v01.wav
-EP001_subtitles_zh-CN_v01.srt
+第01集-场景003-镜头005-首帧-v02.png
+第01集-场景003-镜头005-林凡配音-v01.wav
+第01集-中文字幕-v01.srt
 ```
 
 ## 阶段 7：整包验收与下一步引导
 
-完成当前阶段后更新 `deliverables-manifest.json`，记录文件路径、版本、状态、依赖和最后检查时间。最终 `final-qc.md` 至少核对：
+完成当前阶段后更新 `deliverables-manifest.json`，记录文件路径、版本、状态、依赖和最后检查时间。最终 `最终验收报告.md` 至少核对：
 
 - 原著覆盖与已批准改编。
 - 人物、场景和关键道具的三视图提示词已经导出，人物均为完整全身三视图，提示词语言与禁用词检查通过。
@@ -230,7 +243,7 @@ EP001_subtitles_zh-CN_v01.srt
 - 没有缺失素材、空占位文件或未说明的草稿。
 - 用户能从 `NEXT_STEP.md` 看懂下一步。
 
-每次回复末尾只给当前最有用的下一步：需要用户确认时指出具体文件和决定；可以继续执行时告诉用户回复“继续生成第 N 集”或直接进入下一阶段。不要一次抛出整条流水线让零基础用户自行判断。
+每次回复末尾只给当前最有用的下一步：需要用户确认时指出具体文件和决定；可以继续执行时告诉用户回复“继续生成第 N 集”或直接进入下一阶段。逐段模式完成后只提醒“本段文字到视频生产已经完成，请输入下一段小说内容”。不要一次抛出整条流水线让零基础用户自行判断。
 
 ## 对用户的阶段汇报格式
 

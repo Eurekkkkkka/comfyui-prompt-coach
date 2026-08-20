@@ -18,6 +18,8 @@ REQUIRED = (
     "references/prompt-rules.md",
     "references/visual-asset-storyboard.md",
     "references/novel-to-comic-pipeline.md",
+    "references/segment-to-video-loop.md",
+    "references/tutorial-mode.md",
     "scripts/update_skill.py",
 )
 
@@ -51,7 +53,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="小说导入后新增视觉资产三视图提示词交付：人物必须为全身正面、标准侧面和背面三视图，提示词统一使用中文长句，并移除画面比例、4K、8K及空泛质量词。",
+        default="新增零基础教学模式：用户说“教我怎么用这个skill”时，按小说到视频、具体工作流教学、结果诊断三个入口逐步引导；保留逐段文字到视频闭环和中文交付文件名。",
     )
     args = parser.parse_args()
 
