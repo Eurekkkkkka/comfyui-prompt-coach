@@ -1,6 +1,6 @@
 {
-  "version": "1.5.4",
+  "version": "1.7.0",
   "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "91d2a1357bd3fe87f3e756ec157cae87ba08fd8745ebc910ac9a852e7e6ffe2d",
-  "release_notes": "修正视觉资产输出规范：只有人物生成完整全身三视图，道具每项生成一张单物体参考图，场景每项生成一张单一连续空间参考图，并禁止道具与场景分栏、拼贴、三视图或重复主体。"
+  "sha256": "cd686142ee634298c89e09203741710f644ae67a2ccf87fac1800ba6d6c496ee",
+  "release_notes": "同步慎银镜像 2026-09-01 的 87 个正式工作流，补齐 Krea 2、MiniMax Music 3、Qwen3-TTS、H3 官方重写节点等教学与节点定位，并修复无需提示词误判。"
 }

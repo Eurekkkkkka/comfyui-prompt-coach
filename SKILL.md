@@ -1,6 +1,6 @@
 ---
 name: comfyui-prompt-coach
-description: 面向零基础学员的小说改 AI 漫剧与 ComfyUI 工作流提示词教练。用户说“教我怎么用这个skill”时进入交互式教学模式；也可接收小说全本或连续片段，按阶段完成故事事实提取、人物/场景/道具资产、首帧分镜、镜头视频和连续性验收，并持续指引用户在智算云扉完成当前阶段；还可导出整书解析、故事圣经、全集分集表、逐集剧本、配音、字幕和剪辑交接文件，或路由具体 ComfyUI 工作流。用于小说改漫剧、逐段文字到视频、视觉资产生产、一致性分镜，以及 Qwen、Wan、MiniMax H3、Bernini、LTX、Kontext、Klein、Ideogram 等课程工作流。
+description: 面向零基础学员的小说改 AI 漫剧与 ComfyUI 工作流提示词教练。用户说“教我怎么用这个skill”时进入交互式教学模式；也可接收小说全本或连续片段，按阶段完成故事事实提取、人物/场景/道具资产、首帧分镜、镜头视频和连续性验收，并持续指引用户在智算云扉完成当前阶段；还可导出整书解析、故事圣经、全集分集表、逐集剧本、配音、字幕和剪辑交接文件，或路由具体 ComfyUI 工作流。用于小说改漫剧、逐段文字到视频、视觉资产生产、一致性分镜，以及 Qwen、Wan、MiniMax H3、MiniMax Music 3、Qwen3-TTS、Krea 2、Bernini、LTX、Kontext、Klein、Ideogram 等课程工作流。
 ---
 
 # ComfyUI 工作流提示词教练
@@ -87,6 +87,7 @@ description: 面向零基础学员的小说改 AI 漫剧与 ComfyUI 工作流提
 6. 如果用户要做主视觉基准板、人物/场景/道具资产、一致性分镜或第 3 课作业，读取 [references/visual-asset-storyboard.md](references/visual-asset-storyboard.md)，确认当前处于基准板、分镜、重跑还是验收阶段。
 7. 分析用户已上传的图片、视频或音频，并收集仍缺少的硬性要求。
 8. 读取 [references/prompt-rules.md](references/prompt-rules.md) 中对应模型家族的规则。
+   - 已确认 MiniMax H3 工作流时，还必须完整读取 [references/minimax-h3-prompting.md](references/minimax-h3-prompting.md)。该文件优先处理 H3 模式、结构化提示词和最新版单节点创作台的 `@` 素材引用；通用视频规则仍以 `prompt-rules.md` 为准。
 9. 生成可直接复制的内容，随后指出具体填写位置和运行方法。
 10. 正常任务答复结束前，按照“每次使用后的自动检查”检查一次版本并追加状态行。
 

@@ -16,6 +16,7 @@ REQUIRED = (
     "VERSION",
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
+    "references/minimax-h3-prompting.md",
     "references/visual-asset-storyboard.md",
     "references/novel-to-comic-pipeline.md",
     "references/segment-to-video-loop.md",
@@ -53,7 +54,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="修正视觉资产输出规范：只有人物生成完整全身三视图，道具每项生成一张单物体参考图，场景每项生成一张单一连续空间参考图，并禁止道具与场景分栏、拼贴、三视图或重复主体。",
+        default="同步慎银镜像 2026-09-01 的 87 个正式工作流，补齐 Krea 2、MiniMax Music 3、Qwen3-TTS、H3 官方重写节点等教学与节点定位，并修复无需提示词误判。",
     )
     args = parser.parse_args()
 

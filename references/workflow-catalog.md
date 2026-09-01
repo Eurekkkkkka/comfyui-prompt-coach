@@ -1,6 +1,6 @@
 # 工作流目录与节点定位
 
-> 数据快照：2026-08-05（慎银的镜像，74 个工作流）。本目录由工作流 JSON 自动提取后供人工复核；如用户上传的 JSON 与本目录冲突，以用户实际 JSON 为准。
+> 数据快照：2026-09-01（慎银的镜像，87 个正式工作流）。本目录由工作流 JSON 自动提取后供人工复核；如用户上传的 JSON 与本目录冲突，以用户实际 JSON 为准。
 
 ## 使用方法
 
@@ -12,16 +12,17 @@
 
 ## 分类索引
 
-- [MiniMax H3（4）](#MiniMax-H3)
+- [MiniMax H3（6）](#MiniMax-H3)
 - [光影处理（2）](#光影处理)
 - [动作迁移（4）](#动作迁移)
 - [动漫转真人（4）](#动漫转真人)
 - [去水印（6）](#去水印)
 - [反推（2）](#反推)
-- [变清晰（6）](#变清晰)
-- [图生视频（3）](#图生视频)
-- [声音处理（6）](#声音处理)
-- [多视角分镜（2）](#多视角分镜)
+- [变清晰（7）](#变清晰)
+- [图生图（1）](#图生图)
+- [图生视频（2）](#图生视频)
+- [声音处理（9）](#声音处理)
+- [多视角分镜（3）](#多视角分镜)
 - [对口型（2）](#对口型)
 - [局部重绘（5）](#局部重绘)
 - [扩图（1）](#扩图)
@@ -31,23 +32,26 @@
 - [换脸（2）](#换脸)
 - [换装（3）](#换装)
 - [文字处理（2）](#文字处理)
-- [文生图（2）](#文生图)
-- [根目录（5）](#根目录)
+- [文生图（5）](#文生图)
+- [根目录（7）](#根目录)
 - [老照片修复（3）](#老照片修复)
+- [视频修改（1）](#视频修改)
 - [视频换人（4）](#视频换人)
 
 ## 总览
 
 | 分类 | 工作流 | 提示词 | 素材类型 |
 |---|---|---|---|
-| MiniMax H3 | MiniMax-H3-Director | 需填写 | 图片/视频/音频（按模式） |
 | MiniMax H3 | MiniMax-H3-I2V-Image-to-Video | 需填写 | 图片 |
 | MiniMax H3 | MiniMax-H3-R2V-Reference-to-Video | 需填写 | 图片 |
 | MiniMax H3 | MiniMax-H3-T2V-Text-to-Video | 需填写 | 未自动识别 |
+| MiniMax H3 | MiniMax-H3-导演台 | 需填写 | 图片/视频/音频（按模式） |
+| MiniMax H3 | Minimax-H3单节点创作台 | 需填写 | 图片/视频/音频（节点内添加，按素材角色自动路由） |
+| MiniMax H3 | 升级版数字人演员-音频驱动 | 需填写 | 图片、音频 |
 | 光影处理 | 光影重塑-图片-Edit2509 | 需填写 | 图片 |
-| 光影处理 | 视频打光-文-MiniMax | 需填写 | 视频 |
+| 光影处理 | 视频打光-文丨MiniMax | 需填写 | 视频 |
 | 动作迁移 | 动作迁移-5090兼容版-Animate | 需填写 | 图片、视频 |
-| 动作迁移 | 动作迁移-SCAIL2 | 需填写 | 图片、视频 |
+| 动作迁移 | 动作迁移-Animate2 | 无需提示词 | 图片、视频 |
 | 动作迁移 | 动作迁移-无头版-Animate | 需填写 | 图片、视频 |
 | 动作迁移 | 动作迁移-进阶版-Animate | 需填写 | 图片、视频 |
 | 动漫转真人 | 动漫转真人-Anything | 需填写 | 图片 |
@@ -62,23 +66,28 @@
 | 去水印 | 视频去水印-遮罩点-MiniMax | 需填写 | 视频 |
 | 反推 | 反推提示词-图片 | 需填写 | 图片 |
 | 反推 | 反推提示词-视频 | 需填写 | 视频 |
+| 变清晰 | LTX2.3-高清放大 | 需填写 | 图片/视频/音频 |
 | 变清晰 | 亿级像素-文生图-Z-image | 需填写 | 未自动识别 |
 | 变清晰 | 亿级像素-洗图-Z-image | 需填写 | 图片 |
 | 变清晰 | 图片超级放大-亿级像素-Z-image | 需填写 | 图片 |
 | 变清晰 | 图片高清修复-4K-SeedVR2 | 无需提示词 | 图片 |
 | 变清晰 | 图片高清放大-8K-SUPIR | 需填写 | 图片 |
 | 变清晰 | 视频4K修复-FlashVSR | 无需提示词 | 视频 |
+| 图生图 | 图生图-FLUX.2 Klein 4B 多图参考编辑 | 需填写 | 图片 |
 | 图生视频 | 图生视频 | 需填写 | 图片 |
-| 图生视频 | 图生视频-三段式长视频 | 需填写 | 图片 |
 | 图生视频 | 首尾帧视频-Wan2.2 | 需填写 | 图片 |
-| 声音处理 | ai翻唱-Soulx-Singer | 无需提示词 | 音频 |
+| 声音处理 | MiniMax Music 3-W4A8（官方Caption重写V2） | 需填写 | 未自动识别 |
+| 声音处理 | Qwen3-TTS-克隆固定音色 | 需填写 | 音频 |
+| 声音处理 | Qwen3-TTS-设计角色音色 | 需填写 | 未自动识别 |
 | 声音处理 | 变声器-Seed VC | 无需提示词 | 音频 |
 | 声音处理 | 声音克隆-TTS3（单人版） | 需填写 | 音频 |
 | 声音处理 | 声音克隆-TTS3（双人对话版） | 需填写 | 音频 |
+| 声音处理 | 对白音频-LUFS响度统一 | 无需提示词 | 音频 |
 | 声音处理 | 视频换配音-Seed VC | 无需提示词 | 视频、音频 |
 | 声音处理 | 配音二创-AudioDiT | 需填写 | 音频 |
 | 多视角分镜 | 多视角分镜 | 需填写 | 图片 |
 | 多视角分镜 | 多视角分镜-3D摄像机-Edit2511 | 需填写 | 图片 |
+| 多视角分镜 | 角色资产四视图丨Krea2 | 无需提示词 | 图片 |
 | 对口型 | 唱歌数字人-InfiniteTalk | 需填写 | 图片、音频 |
 | 对口型 | 视频对口型-InfiniteTalk | 需填写 | 视频、音频 |
 | 局部重绘 | 局部重绘-万物消除-Klein | 需填写 | 图片 |
@@ -100,16 +109,22 @@
 | 换装 | 视频换装-Animate | 需填写 | 图片、视频 |
 | 文字处理 | 局部重绘-无痕改字 | 需填写 | 图片 |
 | 文字处理 | 艺术字生成 | 需填写 | 未自动识别 |
+| 文生图 | 文生图-FLUX.2 Klein 4B | 需填写 | 未自动识别 |
+| 文生图 | 文生图-Krea 2 Turbo | 需填写 | 未自动识别 |
 | 文生图 | 文生图-Qwen | 需填写 | 未自动识别 |
+| 文生图 | 文生图-Qwen-Image-2512 四步加速 | 需填写 | 未自动识别 |
 | 文生图 | 文生图画布-ideogram4 | 需填写 | 未自动识别 |
 | 根目录 | Berinini 电商人物替换 长时长版 | 需填写 | 图片、视频 |
 | 根目录 | LTX导演台2.0编辑 | 需填写 | 图片/视频/音频 |
 | 根目录 | bernini导演台 | 需填写 | 视频/参考图 |
+| 根目录 | 文生图-动漫丨Anima | 需填写 | 未自动识别 |
+| 根目录 | 文生图丨Z-image | 需填写 | 未自动识别 |
 | 根目录 | 皮肤纹理修复-图片-SUPIR | 需填写 | 图片 |
 | 根目录 | 视频补帧-GIMM-VFI | 无需提示词 | 视频 |
 | 老照片修复 | 老照片修复-Edit2511 | 需填写 | 图片 |
 | 老照片修复 | 老照片修复-Kontext | 需填写 | 图片 |
 | 老照片修复 | 老照片动态修复 | 需填写 | 图片 |
+| 视频修改 | 视频修改-MiniMax-H3-R2V多参考 | 需填写 | 图片 |
 | 视频换人 | 视频换人-Animate（手动遮罩） | 需填写 | 图片、视频 |
 | 视频换人 | 视频换人-Animate（自动遮罩） | 需填写 | 图片、视频 |
 | 视频换人 | 视频换人-MoCha（手动遮罩） | 需填写 | 图片、视频 |
@@ -117,9 +132,50 @@
 
 ## MiniMax H3
 
-### MiniMax-H3-Director
+### MiniMax-H3-I2V-Image-to-Video
 
-- 文件：`MiniMax H3/MiniMax-H3-Director.json`
+- 文件：`MiniMax H3/MiniMax-H3-I2V-Image-to-Video.json`
+- 提示词状态：需填写
+- 素材类型：图片
+- 素材节点：
+  - 图片：`LoadImage`，节点 ID `114`，类型 `LoadImage`；原内容特征：镜像素材：唱歌数字人.png
+- 提示词节点候选：
+  - 正向/指令：`提示词`，节点 ID `141`，类型 `CR Text`，mode `0`；原内容特征：快乐的唱歌
+- 模式与教学要点：
+  - 保留工作流预设的 T2V、I2V 或 R2V 模式；填写原始创作要求后，由官方 H3 重写节点生成结构化提示词并给出校验结果。
+  - 若 `prompt` 已连接上游文本节点，就在上游标题为“提示词”或 `Input Text (Prompt)` 的节点填写；未连接时直接填写重写节点内的 `prompt`。
+  - 参考素材编号必须与实际连接顺序一致；校验报告提示未连接音频或引用越界时，先修正引用再运行视频生成。
+
+### MiniMax-H3-R2V-Reference-to-Video
+
+- 文件：`MiniMax H3/MiniMax-H3-R2V-Reference-to-Video.json`
+- 提示词状态：需填写
+- 素材类型：图片
+- 素材节点：
+  - 图片：`LoadImage`，节点 ID `137`，类型 `LoadImage`；原内容特征：red_superboy_on_city_roof.png
+  - 图片：`LoadImage`，节点 ID `139`，类型 `LoadImage`；原内容特征：mecha_dragon_lightning.png
+- 提示词节点候选：
+  - 正向/指令：`Input Text (Prompt)`，节点 ID `138`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：Bold comic-book ink style, heavy linework, red and blue-black palette, night city. Use <Picture…
+- 模式与教学要点：
+  - 保留工作流预设的 T2V、I2V 或 R2V 模式；填写原始创作要求后，由官方 H3 重写节点生成结构化提示词并给出校验结果。
+  - 若 `prompt` 已连接上游文本节点，就在上游标题为“提示词”或 `Input Text (Prompt)` 的节点填写；未连接时直接填写重写节点内的 `prompt`。
+  - 参考素材编号必须与实际连接顺序一致；校验报告提示未连接音频或引用越界时，先修正引用再运行视频生成。
+
+### MiniMax-H3-T2V-Text-to-Video
+
+- 文件：`MiniMax H3/MiniMax-H3-T2V-Text-to-Video.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - H3 原始创作要求（prompt）：`MiniMaxH3PromptRewriter（原始创作要求 / 官方 H3 重写 / 校验）`，节点 ID `119`，类型 `MiniMaxH3PromptRewriter`，mode `0`；原内容特征：保持人物身份、服装、空间方向和镜头轴线连续；不要文字、Logo、水印、闪烁、肢体畸变或突然切镜。
+- 模式与教学要点：
+  - 保留工作流预设的 T2V、I2V 或 R2V 模式；填写原始创作要求后，由官方 H3 重写节点生成结构化提示词并给出校验结果。
+  - 若 `prompt` 已连接上游文本节点，就在上游标题为“提示词”或 `Input Text (Prompt)` 的节点填写；未连接时直接填写重写节点内的 `prompt`。
+  - 参考素材编号必须与实际连接顺序一致；校验报告提示未连接音频或引用越界时，先修正引用再运行视频生成。
+
+### MiniMax-H3-导演台
+
+- 文件：`MiniMax H3/MiniMax-H3-导演台.json`
 - 提示词状态：需填写
 - 素材类型：图片/视频/音频（按模式）
 - 素材节点：
@@ -134,34 +190,33 @@
   - T2V/I2V/FL2V 使用 `minimax_h3_fl2va_pruned_int8_convrot.safetensors`；R2V/V2V/RV2V 使用 `minimax_h3_ref2va_pruned_int8_convrot.safetensors`。
   - 默认 124 帧约 5 秒（24fps）；切换模式后先检查 UNET，再填写素材、提示词、分辨率、帧数和 seed。
 
-### MiniMax-H3-I2V-Image-to-Video
+### Minimax-H3单节点创作台
 
-- 文件：`MiniMax H3/MiniMax-H3-I2V-Image-to-Video.json`
+- 文件：`MiniMax H3/Minimax-H3单节点创作台.json`
 - 提示词状态：需填写
-- 素材类型：图片
+- 素材类型：图片/视频/音频（节点内添加，按素材角色自动路由）
 - 素材节点：
-  - 图片：`LoadImage`，节点 ID `114`，类型 `LoadImage`；原内容特征：transparent_rgb_gaming_mouse.png
+  - 图片/视频/音频（节点内添加，按素材角色自动路由）：`MiniMaxH3Creator（单节点创作台：镜头卡提示词 / @ 素材 / 多段时间线）`，节点 ID `2`，类型 `MiniMaxH3Creator`
 - 提示词节点候选：
-  - 正向/指令：`MiniMax H3 主节点（Prompt 字段）`，节点 ID `105`，类型 `4c314f31-ecda-4b08-ae98-faaba1bf613f`，mode `0`；原内容特征：Editorial tech product film. The transparent gaming mouse from <Picture 1> in its original scen…
+  - 单节点创作台镜头卡提示词：`MiniMaxH3Creator（单节点创作台：镜头卡提示词 / @ 素材 / 多段时间线）`，节点 ID `2`，类型 `MiniMaxH3Creator`，mode `0`；原内容特征：电影感写实风格，雨夜的霓虹街道，一名穿黄色雨衣的年轻女记者撑着黑伞快步走向镜头。镜头从湿润路面的霓虹倒影开始，以低机位缓慢抬升，同时平稳后退跟拍。她走到镜头前停下，直视镜头，用清晰自然的普通…
+- 模式与教学要点：
+  - 单镜头把提示词写进唯一镜头卡的大文本框；不要写顶部全局提示词。
+  - 多镜头卡时，全局提示词只放每段继承的身份、风格与连续性锁；每张卡写本段独有内容。
+  - 素材在节点内部添加并用界面生成的 @ 句柄引用；排队时节点自动转换为 H3 序号。
+  - 首帧、尾帧与普通参考素材的角色决定模型路由，不再选择旧 Director 的 task_type。
+  - 节点没有输入输出连线并自行保存预览；不要手工编辑 creator_data JSON 或重接采样线路。
+  - 每张镜头卡是一次 4—15 秒生成；多卡续接由节点自动传递上一段尾帧。
 
-### MiniMax-H3-R2V-Reference-to-Video
+### 升级版数字人演员-音频驱动
 
-- 文件：`MiniMax H3/MiniMax-H3-R2V-Reference-to-Video.json`
+- 文件：`MiniMax H3/升级版数字人演员-音频驱动.json`
 - 提示词状态：需填写
-- 素材类型：图片
+- 素材类型：图片、音频
 - 素材节点：
-  - 图片：`LoadImage`，节点 ID `137`，类型 `LoadImage`；原内容特征：red_superboy_on_city_roof.png
-  - 图片：`LoadImage`，节点 ID `139`，类型 `LoadImage`；原内容特征：mecha_dragon_lightning.png
+  - 音频：`LoadAudio`，节点 ID `171`，类型 `LoadAudio`；原内容特征：完整音频歌曲.mp3
+  - 图片：`LoadImage`，节点 ID `137`，类型 `LoadImage`；原内容特征：参考图小弟.png
 - 提示词节点候选：
-  - 正向/指令：`Input Text (Prompt)`，节点 ID `138`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：Bold comic-book ink style, heavy linework, red and blue-black palette, night city. Use <Picture…
-
-### MiniMax-H3-T2V-Text-to-Video
-
-- 文件：`MiniMax H3/MiniMax-H3-T2V-Text-to-Video.json`
-- 提示词状态：需填写
-- 素材类型：未自动识别；结合工作流界面确认
-- 提示词节点候选：
-  - 正向/指令：`MiniMax H3 主节点（Prompt 字段）`，节点 ID `105`，类型 `4c314f31-ecda-4b08-ae98-faaba1bf613f`，mode `0`；原内容特征：Realistic live-action cinematic look, action movie trailer: practical film photography style, a…
+  - 正向/指令：`Input Text (Prompt)`，节点 ID `138`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：【画面基础】 完全沿用参考图全部场景 【人物】 保留原图中间中年男人相貌，A：画面内短发男人，浅灰外套内搭浅蓝色衬衫，手中高举圆形凳子，面部完整露出；B：拿刀的人全程不入镜，脸部、身体、手臂…
 
 
 ## 光影处理
@@ -177,15 +232,15 @@
   - 编辑指令：`TextEncodeQwenImageEditPlus`，节点 ID `3`，类型 `TextEncodeQwenImageEditPlus`，mode `0`
   - 编辑指令：`TextEncodeQwenImageEditPlus`，节点 ID `11`，类型 `TextEncodeQwenImageEditPlus`，mode `0`；原内容特征：室内暗调封闭环境，采用单侧90°水平侧位硬光为主光，垂直角度平齐主体高度，无额外辅光补影，运用阴阳光布光技巧塑造强烈明暗分割，光比设置为1:20极高反差，主光4500K 中性自然白柔光，辅光…
 
-### 视频打光-文-MiniMax
+### 视频打光-文丨MiniMax
 
-- 文件：`光影处理/视频打光-文-MiniMax.json`
+- 文件：`光影处理/视频打光-文丨MiniMax.json`
 - 提示词状态：需填写
 - 素材类型：视频
 - 素材节点：
-  - 视频：`VHS_LoadVideo`，节点 ID `141`，类型 `VHS_LoadVideo`；原内容特征：视频1.mp4
+  - 视频：`加载视频`，节点 ID `141`，类型 `VHS_LoadVideo`；原内容特征：镜像素材：视频打光.mp4
 - 提示词节点候选：
-  - 正向/指令：`提示词`，节点 ID `138`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：将视频的光影改成雷雨
+  - 正向/指令：`提示词`，节点 ID `138`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：画面唯一光源是身后的强光窗；逆光在人物发丝、肩线与面部一侧勾出锐利边缘光；镜头炫光（横向长条光晕、圆环光晕、菱形光斑序列）是亮窗与镜头轴线之间的光学产物，机位锁死、亮窗固定，因此炫光在第一帧…
 
 
 ## 动作迁移
@@ -203,20 +258,15 @@
 - 提示词节点候选：
   - 负向：`WanVideoTextEncodeCached`，节点 ID `65`，类型 `WanVideoTextEncodeCached`，mode `0`；原内容特征：色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容…
 
-### 动作迁移-SCAIL2
+### 动作迁移-Animate2
 
-- 文件：`动作迁移/动作迁移-SCAIL2.json`
-- 提示词状态：需填写
+- 文件：`动作迁移/动作迁移-Animate2.json`
+- 提示词状态：无需提示词
 - 素材类型：图片、视频
 - 素材节点：
-  - 图片：`LoadImage`，节点 ID `30`，类型 `LoadImage`；原内容特征：ComfyUI_00002_pqzrz_1765454154.png
-  - 视频：`VHS_LoadVideo`，节点 ID `33`，类型 `VHS_LoadVideo`；原内容特征：跳舞1.mp4
-- 提示词节点候选：
-  - 正向/指令：`CR Prompt Text`，节点 ID `192`，类型 `CR Prompt Text`，mode `0`；原内容特征：person
-  - 正向/指令：`CLIPTextEncode`，节点 ID `87`，类型 `CLIPTextEncode`，mode `0`；原内容特征：person
-  - 正向/指令：`CLIPTextEncode`，节点 ID `3`，类型 `CLIPTextEncode`，mode `0`；原内容特征：A lady is dancing
-  - 正向/指令：`CLIPTextEncode`，节点 ID `4`，类型 `CLIPTextEncode`，mode `0`
-  - 正向/指令：`CR Prompt Text`，节点 ID `191`，类型 `CR Prompt Text`，mode `0`；原内容特征：一个女孩在跳舞
+  - 视频：`Load Video (Pose Video)`，节点 ID `240`，类型 `LoadVideo`；原内容特征：street_dance_drive.mp4
+  - 图片：`Load Image (Reference Image)`，节点 ID `189`，类型 `LoadImage`；原内容特征：pink_hair_mech_arms_ref.png
+- 教学处理：不要虚构提示词框；说明素材输入和运行步骤。
 
 ### 动作迁移-无头版-Animate
 
@@ -388,6 +438,16 @@
 
 ## 变清晰
 
+### LTX2.3-高清放大
+
+- 文件：`变清晰/LTX2.3-高清放大.json`
+- 提示词状态：需填写
+- 素材类型：图片/视频/音频
+- 素材节点：
+  - 图片/视频/音频：`LTXDirector（导演台内提示词/轨道）`，节点 ID `32`，类型 `LTXDirector`；原内容特征：{"mainTrackEnabled":true,"audioTrackEnabled":true,"motionTrackEnabled":true,"propHeight":90,"gl…
+- 提示词节点候选：
+  - 导演台指令/轨道文本：`LTXDirector（导演台内提示词/轨道）`，节点 ID `32`，类型 `LTXDirector`，mode `0`
+
 ### 亿级像素-文生图-Z-image
 
 - 文件：`变清晰/亿级像素-文生图-Z-image.json`
@@ -448,6 +508,23 @@
 - 教学处理：不要虚构提示词框；说明素材输入和运行步骤。
 
 
+## 图生图
+
+### 图生图-FLUX.2 Klein 4B 多图参考编辑
+
+- 文件：`图生图/图生图-FLUX.2 Klein 4B 多图参考编辑.json`
+- 提示词状态：需填写
+- 素材类型：图片
+- 素材节点：
+  - 图片：`图片1｜主体与底图（必须替换）`，节点 ID `76`，类型 `LoadImage`；原内容特征：42beb03c6a07cc3a7f24f521792fd082.jpeg
+  - 图片：`图片2｜服装/场景/风格参考（必须替换）`，节点 ID `81`，类型 `LoadImage`；原内容特征：Portrait_00004_ (1).png
+- 提示词节点候选：
+  - 多图编辑指令（text）：`第3步｜输入编辑命令并生成`，节点 ID `92`，类型 `65c22b29-59aa-496b-89c6-55a603658670`，mode `0`；原内容特征：Use the person from Image 1 as the base subject and apply only the clothing design, materials a…
+- 模式与教学要点：
+  - Image 1 是主体或底图，负责身份、姿势、构图与原环境；Image 2 只提供服装、商品、场景或风格属性。
+  - 编辑指令先写把 Image 2 的哪些属性应用到 Image 1，再写 Image 1 必须保持不变的内容；不要只写“融合两张图”。
+
+
 ## 图生视频
 
 ### 图生视频
@@ -461,19 +538,6 @@
   - 负向：`CLIPTextEncode`，节点 ID `206`，类型 `CLIPTextEncode`，mode `0`；原内容特征：色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容…
   - 正向/指令：`CLIPTextEncode`，节点 ID `236`，类型 `CLIPTextEncode`，mode `0`；原内容特征：- 第1 - 2秒：害羞的低下头； - 第3 - 4秒：红着脸转过身面朝镜头，微笑的抬起头； - 第5秒：对着镜头比心。
   - 正向/指令：`视频提示词公式`，节点 ID `279`，类型 `视频提示词公式`，mode `0`；原内容特征：兼具超凡脱俗的美感与灵性，数字艺术风格，超现实景观，高分辨率， 女人送出飞吻
-
-### 图生视频-三段式长视频
-
-- 文件：`图生视频/图生视频-三段式长视频.json`
-- 提示词状态：需填写
-- 素材类型：图片
-- 素材节点：
-  - 图片：`LoadImage`，节点 ID `52`，类型 `LoadImage`；原内容特征：镜像素材：视频对口型视频.png
-- 提示词节点候选：
-  - 负向：`Negative`，节点 ID `7`，类型 `CLIPTextEncode`，mode `0`；原内容特征：色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容…
-  - 分段正向：`第一段提示词`，节点 ID `90`，类型 `CLIPTextEncode`，mode `0`；原内容特征：特写聚焦面部，人物轻抬右手将食指抵在唇边，眼波流转直视镜头，眼神带着勾人的魅惑，脖颈处首饰随细微动作轻晃，上衣的配饰光泽一闪，整体氛围慵懒又撩人
-  - 分段正向：`第二段提示词`，节点 ID `126`，类型 `CLIPTextEncode`，mode `0`；原内容特征：稍拉远至半身，眼睑微垂又猛地抬眼，眼底透着狡黠的笑意，肩头微耸，神态娇俏又带点小调皮
-  - 分段正向：`第三段提示词`，节点 ID `135`，类型 `CLIPTextEncode`，mode `0`；原内容特征：回到面部特写，嘴角勾起一抹似笑非笑的弧度，眼神慢慢眯起，带着几分慵懒的疏离感，指尖轻蹭下巴，神态冷艳又妩媚，最后定格在眼尾轻挑的瞬间
 
 ### 首尾帧视频-Wan2.2
 
@@ -490,15 +554,41 @@
 
 ## 声音处理
 
-### ai翻唱-Soulx-Singer
+### MiniMax Music 3-W4A8（官方Caption重写V2）
 
-- 文件：`声音处理/ai翻唱-Soulx-Singer.json`
-- 提示词状态：无需提示词
+- 文件：`声音处理/MiniMax Music 3-W4A8（官方Caption重写V2）.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - 音乐需求、歌词与约束（brief / lyrics / constraints）：`MiniMaxMusic3CaptionRewriter（brief / lyrics / constraints）`，节点 ID `41`，类型 `MiniMaxMusic3CaptionRewriter`，mode `0`；原内容特征：日系流行摇滚，女声，强旋律副歌。主歌克制，副歌打开，现代但不过度电子化。
+- 模式与教学要点：
+  - 只填写 `brief`、`lyrics` 和 `constraints`；普通创作使用 Rewrite，已有完整官方 Caption 时才使用 Passthrough。
+  - 歌词按实际段落保留 `[Verse]`、`[Chorus]` 等结构；曲风写可听见的乐器、速度、节奏、唱法和动态，不模仿在世艺人。
+  - Caption 重写、路由与校验由节点自动完成；不要让学员修改模型、采样或编码节点。
+
+### Qwen3-TTS-克隆固定音色
+
+- 文件：`声音处理/Qwen3-TTS-克隆固定音色.json`
+- 提示词状态：需填写
 - 素材类型：音频
 - 素材节点：
-  - 音频：`上传参考音色`，节点 ID `14`，类型 `LoadAudio`；原内容特征：镜像素材：声音克隆（单人）小团团音色.MP3
-  - 音频：`上传音频`，节点 ID `12`，类型 `LoadAudio`；原内容特征：bad boy.mp3
-- 教学处理：不要虚构提示词框；说明素材输入和运行步骤。
+  - 音频：`LoadAudio`，节点 ID `20`，类型 `LoadAudio`；原内容特征：镜像素材：声音克隆（单人）小团团音色.MP3
+- 提示词节点候选：
+  - 目标台词（target_text）：`目标台词输入框`，节点 ID `22`，类型 `PrimitiveNode`，mode `0`；原内容特征：今天我们继续完成这段故事的视频制作。
+- 模式与教学要点：
+  - 上传单人、干净、无配乐的参考音频，在目标台词输入框填写要合成的新台词。
+  - 参考文本可由工作流转写；语言与台词语言一致，先保持其余采样参数默认。
+
+### Qwen3-TTS-设计角色音色
+
+- 文件：`声音处理/Qwen3-TTS-设计角色音色.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - 台词与角色音色设计（text / instruct）：`Qwen3-TTS 角色音色设计（text / instruct）`，节点 ID `15`，类型 `AILab_Qwen3TTSVoiceDesign_Advanced`，mode `0`；原内容特征：大家好，这是本集角色的标准音色。
+- 模式与教学要点：
+  - `text` 填最终要说的台词；`instruct` 写年龄、性别、音高、音色、语速、口音、情绪和使用场景。
+  - 音色说明写可听见的特征，不引用真人姓名或只写抽象气质。
 
 ### 变声器-Seed VC
 
@@ -530,6 +620,15 @@
   - 音频：`LoadAudio`，节点 ID `12`，类型 `LoadAudio`；原内容特征：镜像素材：声音克隆（多人）马保国音色.MP3
 - 提示词节点候选：
   - 台词/文案：`MultiLinePromptMG`，节点 ID `10`，类型 `MultiLinePromptMG`，mode `0`；原内容特征：[S1]你好马老师，吃过了么 [S2]吃我一记左刺拳 [S1]你有病吧，我惹你啦，上来就打我，你看我揍不揍你就完了 [S2]年轻人，不讲武德，偷袭我这个老同志 [S1]呸呸呸，臭不要脸 [S…
+
+### 对白音频-LUFS响度统一
+
+- 文件：`声音处理/对白音频-LUFS响度统一.json`
+- 提示词状态：无需提示词
+- 素材类型：音频
+- 素材节点：
+  - 音频：`LoadAudio`，节点 ID `1`，类型 `LoadAudio`；原内容特征：主要用声音.mp3
+- 教学处理：不要虚构提示词框；说明素材输入和运行步骤。
 
 ### 视频换配音-Seed VC
 
@@ -577,6 +676,18 @@
   - 编辑指令：`TextEncodeQwenImageEditPlus`，节点 ID `69`，类型 `TextEncodeQwenImageEditPlus`，mode `0`；原内容特征：泛黄，AI感，不真实，丑陋，油腻的皮肤，异常的肢体，不协调的肢体
   - 正向/指令：`easy promptList`，节点 ID `138`，类型 `easy promptList`，mode `0`
   - 编辑指令：`TextEncodeQwenImageEditPlus (Positive)`，节点 ID `68`，类型 `TextEncodeQwenImageEditPlus`，mode `0`
+
+### 角色资产四视图丨Krea2
+
+- 文件：`多视角分镜/角色资产四视图丨Krea2.json`
+- 提示词状态：无需提示词
+- 素材类型：图片
+- 素材节点：
+  - 图片：`LoadImage`，节点 ID `41`，类型 `LoadImage`；原内容特征：镜像素材：视频换人-Animate-自动遮罩.png
+- 教学处理：不要虚构提示词框；说明素材输入和运行步骤。
+- 模式与教学要点：
+  - 该四视图工作流不要求学员填写提示词：上传一张角色图后直接运行，内部固定指令负责生成脸部特写、正面、侧面和背面。
+  - 负向节点标题已注明 `leave empty`，保持为空，不要擅自补写负向词。
 
 
 ## 对口型
@@ -836,6 +947,25 @@
 
 ## 文生图
 
+### 文生图-FLUX.2 Klein 4B
+
+- 文件：`文生图/文生图-FLUX.2 Klein 4B.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - 正向/指令：`第1步·输入中文长句提示词`，节点 ID `76`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：在简洁中性的灰调背景中展示角色叶林的同一套人物设定，让同一个十八岁亚裔男生以正面、标准侧面和背面三种视角等高并列自然站立，三个视角都从发顶到脚底完整呈现且不裁切头部、手臂、腿部、衣摆和鞋履，…
+
+### 文生图-Krea 2 Turbo
+
+- 文件：`文生图/文生图-Krea 2 Turbo.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - Krea 2 Turbo 正向提示词：`Krea 2 Turbo（顶部提示词大文本框）`，节点 ID `30`，类型 `b0e5ca93-2731-42b9-8e0a-d28ea851ff81`，mode `0`；原内容特征：在简洁中性的灰调背景中展示角色叶林的同一套人物设定，让同一个十八岁亚裔男生以正面、标准侧面和背面三种视角等高并列自然站立，三个视角都从发顶到脚底完整呈现且不裁切头部、手臂、腿部、衣摆和鞋履，…
+- 模式与教学要点：
+  - 在节点顶部大文本框填写中文自然长句提示词，画幅与尺寸在独立尺寸节点设置。
+  - 人物资产仍要求完整全身三视图；场景和道具各生成一张单图。
+
 ### 文生图-Qwen
 
 - 文件：`文生图/文生图-Qwen.json`
@@ -843,6 +973,14 @@
 - 素材类型：未自动识别；结合工作流界面确认
 - 提示词节点候选：
   - 正向/指令：`CLIPTextEncode`，节点 ID `6`，类型 `CLIPTextEncode`，mode `0`；原内容特征：主体：女模特，***只展示模特脖子下方延伸至脚部的中长局部构图*** 构图：采用从模特脖子下方延伸至脚部的中长局部构图，完整呈现服饰的整体廓形、让视觉焦点集中于服装的款式细节、面料质感与配饰…
+
+### 文生图-Qwen-Image-2512 四步加速
+
+- 文件：`文生图/文生图-Qwen-Image-2512 四步加速.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - 正向/指令：`第1、2步·Qwen-Image-2512｜提示词、尺寸与模式`，节点 ID `263`，类型 `fd6ee5f8-a0a9-487a-8b44-8cb65957532a`，mode `0`；原内容特征：夜晚的城市街角有一家温暖明亮的独立书店，落地窗内能看到木质书架和正在阅读的人，门头中央清楚写着“云上书店”，橱窗海报上清楚写着“故事从这里开始”，一位穿深蓝色风衣的年轻女性站在门前抬头看向招…
 
 ### 文生图画布-ideogram4
 
@@ -889,6 +1027,25 @@
   - 视频/参考图：`ComfyBerniniDirector（节点内正向/负向提示词）`，节点 ID `1`，类型 `ComfyBerniniDirector`；原内容特征：rv2v — 参考素材改视频
 - 提示词节点候选：
   - 导演指令（节点内含正向/负向字段）：`ComfyBerniniDirector（节点内正向/负向提示词）`，节点 ID `1`，类型 `ComfyBerniniDirector`，mode `0`；原内容特征：将源视频中的主要人物完整替换为@image0 中的女子。严格保持源视频人物原有的动作、姿态、位置、表情变化和运动节奏，保持镜头运动、构图、背景、光影、商品、道具和场景不变。目标人物在所有画面…
+
+### 文生图-动漫丨Anima
+
+- 文件：`文生图-动漫丨Anima.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - 反推要求：`Qwen3_VQA（提示词字段）`，节点 ID `134`，类型 `Qwen3_VQA`，mode `0`；原内容特征：Qwen3-VL-8B-Instruct-FP8
+  - 正向/指令：`正向提示词`，节点 ID `145`，类型 `CLIPTextEncode`，mode `0`；原内容特征：A young daughter with red hair, asleep under a big tree, upper body close-up
+  - 负向：`负向提示词`，节点 ID `18`，类型 `CLIPTextEncode`，mode `0`；原内容特征：worst quality, low quality, score_1, score_2, score_3, artist name, blurry, extra fingers, bad …
+  - 正向/指令：`提示词`，节点 ID `143`，类型 `CR Text`，mode `0`；原内容特征：杰作，最佳品质，高清，最新，2024年，安全，1名男孩，流川枫，灌篮高手，短乱黑发，锐利刘海遮住一只眼睛，细长黑色眼睛，半闭懒散眼神，冷淡空洞表情，无笑容，白皙皮肤，无腮红，红色篮球服配白色…
+
+### 文生图丨Z-image
+
+- 文件：`文生图丨Z-image.json`
+- 提示词状态：需填写
+- 素材类型：未自动识别；结合工作流界面确认
+- 提示词节点候选：
+  - 正向/指令：`CLIPTextEncode`，节点 ID `70`，类型 `CLIPTextEncode`，mode `0`；原内容特征：一位穿着白色连衣裙的年轻女性，站在海边的礁石上，微笑着看向镜头，半身构图，下午柔和的侧逆光，发丝被风吹起，皮肤质感真实，日系清新摄影风格，高清细节
 
 ### 皮肤纹理修复-图片-SUPIR
 
@@ -949,6 +1106,24 @@
   - 正向/指令：`CR Prompt Text`，节点 ID `109`，类型 `CR Prompt Text`，mode `0`；原内容特征：根据图像，，变成真实风格，去掉水印和字幕
   - 编辑指令：`TextEncodeQwenImageEditPlus`，节点 ID `103`，类型 `TextEncodeQwenImageEditPlus`，mode `0`；原内容特征：将女人的头发变成绿色
   - 正向/指令：`CR Prompt Text`，节点 ID `56`，类型 `CR Prompt Text`，mode `0`；原内容特征：人物动作：缓慢眨眼，轻抬手指理了理自己衣服的衣角，对着镜头摆手打招呼，嘴角以极慢的节奏扬起浅微笑； 情绪：恬静温和，略带怀旧的松弛感，神情自然无刻意姿态； 动态幅度控制在最小范围
+
+
+## 视频修改
+
+### 视频修改-MiniMax-H3-R2V多参考
+
+- 文件：`视频修改/视频修改-MiniMax-H3-R2V多参考.json`
+- 提示词状态：需填写
+- 素材类型：图片
+- 素材节点：
+  - 图片：`LoadImage`，节点 ID `137`，类型 `LoadImage`；原内容特征：red_superboy_on_city_roof.png
+  - 图片：`LoadImage`，节点 ID `139`，类型 `LoadImage`；原内容特征：mecha_dragon_lightning.png
+- 提示词节点候选：
+  - 正向/指令：`Input Text (Prompt)`，节点 ID `138`，类型 `PrimitiveStringMultiline`，mode `0`；原内容特征：Bold comic-book ink style, heavy linework, red and blue-black palette, night city. Use <Picture…
+- 模式与教学要点：
+  - 保留工作流预设的 T2V、I2V 或 R2V 模式；填写原始创作要求后，由官方 H3 重写节点生成结构化提示词并给出校验结果。
+  - 若 `prompt` 已连接上游文本节点，就在上游标题为“提示词”或 `Input Text (Prompt)` 的节点填写；未连接时直接填写重写节点内的 `prompt`。
+  - 参考素材编号必须与实际连接顺序一致；校验报告提示未连接音频或引用越界时，先修正引用再运行视频生成。
 
 
 ## 视频换人
