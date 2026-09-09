@@ -22,6 +22,9 @@ REQUIRED = (
     "references/segment-to-video-loop.md",
     "references/tutorial-mode.md",
     "scripts/update_skill.py",
+    "scripts/course_support.py",
+    "references/course-mode.md",
+    "assets/course-20260909/manifest.json",
 )
 
 SKILL_NAME = "comfyui-prompt-coach"
@@ -63,6 +66,20 @@ def main() -> None:
     if missing:
         raise SystemExit("Missing required files: " + ", ".join(missing))
 
+    course_assets = skill_dir / "assets/course-20260909"
+    course = json.loads((course_assets / "manifest.json").read_text(encoding="utf-8"))
+    for lesson in course["lessons"]:
+        card = skill_dir / "references/course" / f"lesson-{lesson['id']}.md"
+        if not card.is_file():
+            raise SystemExit(f"Missing course card: {card.name}")
+        for name in lesson["examples"]:
+            if not (course_assets / name).is_file():
+                raise SystemExit(f"Missing course example: {name}")
+    for name, expected in course["asset_sha256"].items():
+        path = course_assets / name
+        if not path.is_file() or sha256(path) != expected:
+            raise SystemExit(f"Course example integrity mismatch: {name}")
+
     version = args.version or (skill_dir / "VERSION").read_text(encoding="utf-8").strip()
     if not VERSION_PATTERN.fullmatch(version):
         raise SystemExit(f"Invalid version: {version!r}; expected X.Y.Z")
@@ -82,7 +99,7 @@ def main() -> None:
     manifest = {
         "version": version,
         "download_url": (
-            f"https://github.com/{args.repository}/releases/latest/download/{SKILL_NAME}.zip"
+            f"https://github.com/{args.repository}/releases/download/v{version}/{SKILL_NAME}.zip"
         ),
         "sha256": sha256(zip_path),
         "release_notes": args.release_notes,
