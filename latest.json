@@ -1,6 +1,6 @@
 {
-  "version": "1.7.0",
-  "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/latest/download/comfyui-prompt-coach.zip",
-  "sha256": "cd686142ee634298c89e09203741710f644ae67a2ccf87fac1800ba6d6c496ee",
-  "release_notes": "同步慎银镜像 2026-09-01 的 87 个正式工作流，补齐 Krea 2、MiniMax Music 3、Qwen3-TTS、H3 官方重写节点等教学与节点定位，并修复无需提示词误判。"
+  "version": "1.8.0",
+  "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/download/v1.8.0/comfyui-prompt-coach.zip",
+  "sha256": "968f57220519036b2c7420441d303dc87660838b083438c2a8945d0a3fab2f88",
+  "release_notes": "新增7课26步课程跟练、固定输出、课堂参考文件、进度恢复和课程版本锁定。"
 }
