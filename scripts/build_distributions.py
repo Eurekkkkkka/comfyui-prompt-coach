@@ -17,6 +17,13 @@ REQUIRED = (
     "references/workflow-catalog.md",
     "references/prompt-rules.md",
     "references/minimax-h3-prompting.md",
+    "references/minimax-h3-official/SKILL.md",
+    "references/minimax-h3-official/references/base-multishot-format.md",
+    "references/minimax-h3-official/references/ref2va-format.md",
+    "references/h3-source.md",
+    "references/h3-vendor-sha256.json",
+    "references/workflow-facts.json",
+    "scripts/inspect_workflow_inputs.py",
     "references/visual-asset-storyboard.md",
     "references/novel-to-comic-pipeline.md",
     "references/segment-to-video-loop.md",
@@ -57,7 +64,7 @@ def main() -> None:
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument(
         "--release-notes",
-        default="同步慎银镜像 2026-09-01 的 87 个正式工作流，补齐 Krea 2、MiniMax Music 3、Qwen3-TTS、H3 官方重写节点等教学与节点定位，并修复无需提示词误判。",
+        default="按 2026-09-20 公开镜像核对 86 个工作流并提供独立教程，完整嵌套用户提供的 H3 子技能，修正真实输入位置、正负向识别和素材路由，保留课程跟练。",
     )
     args = parser.parse_args()
 
@@ -65,6 +72,21 @@ def main() -> None:
     missing = [name for name in REQUIRED if not (skill_dir / name).is_file()]
     if missing:
         raise SystemExit("Missing required files: " + ", ".join(missing))
+
+    facts = json.loads((skill_dir / "references/workflow-facts.json").read_text(encoding="utf-8"))
+    workflows = facts["workflows"]
+    if facts["count"] != len(workflows) or len({w["file"] for w in workflows}) != len(workflows):
+        raise SystemExit("Workflow count or unique file identity mismatch")
+    for workflow in workflows:
+        guide = (skill_dir / "references" / workflow["guide"]).resolve()
+        if not guide.is_relative_to(skill_dir / "references/workflows") or not guide.is_file():
+            raise SystemExit("Missing or unsafe workflow guide: " + workflow["guide"])
+    vendor = skill_dir / "references/minimax-h3-official"
+    vendor_hashes = json.loads((skill_dir / "references/h3-vendor-sha256.json").read_text(encoding="utf-8"))
+    for name, expected in vendor_hashes.items():
+        path = (vendor / name).resolve()
+        if not path.is_relative_to(vendor) or not path.is_file() or sha256(path) != expected:
+            raise SystemExit("H3 original package integrity mismatch: " + name)
 
     course_assets = skill_dir / "assets/course-20260909"
     course = json.loads((course_assets / "manifest.json").read_text(encoding="utf-8"))
