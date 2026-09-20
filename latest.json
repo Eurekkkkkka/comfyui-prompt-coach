@@ -1,6 +1,6 @@
 {
-  "version": "1.8.0",
-  "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/download/v1.8.0/comfyui-prompt-coach.zip",
-  "sha256": "968f57220519036b2c7420441d303dc87660838b083438c2a8945d0a3fab2f88",
-  "release_notes": "新增7课26步课程跟练、固定输出、课堂参考文件、进度恢复和课程版本锁定。"
+  "version": "1.9.0",
+  "download_url": "https://github.com/Eurekkkkkka/comfyui-prompt-coach/releases/download/v1.9.0/comfyui-prompt-coach.zip",
+  "sha256": "445ed70914d55eb34dea34506ec8bfee4d261a679a962eb35c97df7b90e575a6",
+  "release_notes": "按 2026-09-20 公开镜像核对 86 个工作流并提供独立教程，完整嵌套用户提供的 H3 子技能，修正真实输入位置、正负向识别和素材路由，保留课程跟练。"
 }
